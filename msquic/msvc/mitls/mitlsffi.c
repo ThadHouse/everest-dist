@@ -97,7 +97,7 @@ void TracePrintf(const char *fmt, ...)
 #if !IS_WINDOWS
     vsnprintf(buffer, sizeof(buffer), fmt, args);
 #else
-    vsprintf_s(buffer, sizeof(buffer), fmt, args);
+    _vsnprintf_s(buffer, sizeof(buffer), _TRUNCATE, fmt, args);
 #endif
     // For WPP tracing, the trailing '\n' is undesirable, so remove.
     char *c = strrchr(buffer, '\n');

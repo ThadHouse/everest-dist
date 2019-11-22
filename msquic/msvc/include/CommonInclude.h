@@ -7,9 +7,16 @@
 #pragma warning(disable:4201) // nonstandard extension used: nameless struct/union
 #pragma warning(disable:4204) // nonstandard extension used: non-constant aggregate initializer
 #pragma warning(disable:4211) // nonstandard extension used: redefined extern to static
+#pragma warning(disable:4221) // nonstandard extension used: 'iv': cannot be initialized using address of automatic variable 'iv_'
+#pragma warning(disable:4242) // conversion from 'krml_checked_int_t' to 'uint8_t', possible loss of data
+#pragma warning(disable:4244) // 'return': conversion from 'krml_checked_int_t' to 'uint8_t', possible loss of data
 #pragma warning(disable:4267) // 'initializing': conversion from 'size_t' to 'uint32_t', possible loss of data
 #pragma warning(disable:4293) // '<<': shift count negative or too big, undefined behavior
+#pragma warning(disable:4456) // declaration of '*' hides previous local declaration
+#pragma warning(disable:4457) // declaration of '*' hides function parameter
 #pragma warning(disable:4554) // '>>': check operator precedence for possible error; use parentheses to clarify precedence
+
+#pragma warning(disable:4996) // Deprecated APIs
 
 #ifdef _KERNEL_MODE
 #include <ntverp.h>
@@ -18,11 +25,13 @@
 #else
 #include <windows.h>
 #endif
+
+extern void TracePrintf(const char *fmt, ...);
 __declspec(noreturn) extern void KremlExit(int n);
 
 #define USE_HEAP_REGIONS 1
 #include "RegionAllocator.h"
 
-#define KRML_HOST_PRINTF DbgPrint
-#define KRML_HOST_EPRINTF DbgPrint
+#define KRML_HOST_PRINTF TracePrintf
+#define KRML_HOST_EPRINTF TracePrintf
 

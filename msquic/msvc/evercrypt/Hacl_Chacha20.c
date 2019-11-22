@@ -131,7 +131,7 @@ static uint32_t
 Hacl_Impl_Chacha20_chacha20_constants[4U] =
   { (uint32_t)0x61707865U, (uint32_t)0x3320646eU, (uint32_t)0x79622d32U, (uint32_t)0x6b206574U };
 
-inline void
+void
 Hacl_Impl_Chacha20_chacha20_init(uint32_t *ctx, uint8_t *k, uint8_t *n1, uint32_t ctr)
 {
   uint32_t *uu____0 = ctx;
