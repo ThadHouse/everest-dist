@@ -29,6 +29,8 @@ set(SOURCES
 
 include_directories(../include)
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${QUIC_C_FLAGS} -D__STDC_FORMAT_MACROS /FI../include/CommonInclude.h")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -D__STDC_FORMAT_MACROS /FI../include/CommonInclude.h")
 
 add_library(kremlib STATIC ${SOURCES})
+
+target_compile_options(kremlib PRIVATE ${QUIC_C_FLAGS})
